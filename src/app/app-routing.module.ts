@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MattersContainerComponent } from './matters/matters-container/matters-container.component';
+import { RouterModule, Routes } from '@angular/router';
+
+import { PagesComponent } from './pages/pages/pages.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'matters' },
+  { path: '', pathMatch: 'full', redirectTo: 'pages' },
   {
-    path: 'matters',
-    component: MattersContainerComponent
+    path: 'pages',
+    component: PagesComponent
   }
 ];
 
