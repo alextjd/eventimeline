@@ -4,7 +4,7 @@ export interface HistoryData {
   birth: Matter[];
 }
 
-export interface HistoryDto {
+export interface History {
   date: string;
   url: string;
   data: HistoryData;
