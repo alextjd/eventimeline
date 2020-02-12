@@ -1,1 +1,6 @@
-<h1>hi</h1>
+<div class="container">
+  <app-matter-item
+    *ngFor="let matter of matters$ | async"
+    [matter]="matter"
+  ></app-matter-item>
+</div>
