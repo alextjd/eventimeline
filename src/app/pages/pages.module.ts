@@ -5,7 +5,8 @@ import { MattersModule } from '../matters/matters.module';
 import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
+  imports: [CommonModule, LayoutModule, MattersModule],
   declarations: [PagesComponent],
-  imports: [CommonModule, LayoutModule, MattersModule]
+  exports: [PagesComponent]
 })
 export class PagesModule {}
