@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Matter } from 'src/app/shared/interfaces/matter.interface';
 
 @Component({
   selector: 'app-matters-container',
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./matters-container.component.scss']
 })
 export class MattersContainerComponent implements OnInit {
-  matters$: Observable<any>;
+  matters$: Observable<Matter[]>;
 
   constructor() {}
 

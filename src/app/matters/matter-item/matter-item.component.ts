@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Matter } from 'src/app/shared/interfaces/matter.interface';
 
 @Component({
   selector: 'app-matter-item',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./matter-item.component.scss']
 })
 export class MatterItemComponent implements OnInit {
-  @Input() matter: any;
+  @Input() matter: Matter[];
 
   constructor() {}
 
