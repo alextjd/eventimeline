@@ -1,7 +1,7 @@
 export interface HistoryData {
   events: Matter[];
-  death: [];
-  birth: [];
+  death: Matter[];
+  birth: Matter[];
 }
 
 export interface HistoryDto {
@@ -12,13 +12,15 @@ export interface HistoryDto {
 
 export interface Matter {
   year: string;
+  date: string;
+  type: MatterType;
   text: string;
   html: string;
   noYearHtml: string;
-  links: HistoryLink[];
 }
 
-export interface HistoryLink {
-  link: string;
-  text: string;
+export enum MatterType {
+  event = 'event',
+  death = 'death',
+  birth = 'birth'
 }
