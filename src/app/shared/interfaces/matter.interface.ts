@@ -1,7 +1,7 @@
 export interface HistoryData {
-  events: Matter[];
-  death: Matter[];
-  birth: Matter[];
+  Events: Matter[];
+  Deaths: Matter[];
+  Births: Matter[];
 }
 
 export interface History {
@@ -20,7 +20,7 @@ export interface Matter {
 }
 
 export enum MatterType {
-  event = 'event',
-  death = 'death',
-  birth = 'birth'
+  Events = 'Event',
+  Deaths = 'Death',
+  Births = 'Birth'
 }
