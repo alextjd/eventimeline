@@ -11,5 +11,44 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+// Create custom colors
+$accent-red: #fe4a49;
+$accent-teal: #2ab7ca;
+$accent-yellow: #fed766;
+$accent-grey: #e6e6ea;
+$accent-lightgrey: #f4f4f8;
+
+$accent-red-invert: findColorInvert($accent-red);
+$accent-teal-invert: findColorInvert($accent-teal);
+$accent-yellow-invert: findColorInvert($accent-yellow);
+$accent-grey-invert: findColorInvert($accent-grey);
+$accent-lightgrey-invert: findColorInvert($accent-lightgrey);
+
+// Add new colors to Bulma's colormap
+@import 'utilities/derived-variables';
+$addColors: (
+  'accent-red': (
+    $accent-red,
+    $accent-red-invert
+  ),
+  'accent-teal': (
+    $accent-teal,
+    $accent-teal-invert
+  ),
+  'accent-yellow': (
+    $accent-yellow,
+    $accent-yellow-invert
+  ),
+  'accent-grey': (
+    $accent-grey,
+    $accent-grey-invert
+  ),
+  'accent-lightgrey': (
+    $accent-lightgrey,
+    $accent-lightgrey-invert
+  )
+);
+$colors: map-merge($colors, $addColors);
+
 // Import Bulma after overrides
 @import 'bulma';
