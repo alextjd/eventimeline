@@ -22,7 +22,6 @@ export class MatterService {
   constructor(private http: HttpClient) {
     // this.history$ = this.getAllHistory();
     this.history$ = of(mockData);
-
     this.history$.subscribe((history: History) => {
       const matters: Matter[] = this.historyToMatters(history);
       this.matters$.next(matters);
@@ -31,10 +30,6 @@ export class MatterService {
 
   getAllHistory(): Observable<History> {
     return this.http.get<History>(url);
-  }
-
-  getAllMatters() {
-    return this.getAllHistory();
   }
 
   historyToMatters(history: History): Matter[] {
