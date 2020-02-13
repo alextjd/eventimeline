@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, ReplaySubject } from 'rxjs';
 
 import {
   History,
@@ -17,7 +17,7 @@ const url = 'http://history.muffinlabs.com/date';
 })
 export class MatterService {
   history$: Observable<History>;
-  matters$: Subject<Matter[]> = new Subject<Matter[]>();
+  matters$: ReplaySubject<Matter[]> = new ReplaySubject<Matter[]>();
 
   constructor(private http: HttpClient) {
     // this.history$ = this.getAllHistory();
@@ -30,6 +30,10 @@ export class MatterService {
 
   getAllHistory(): Observable<History> {
     return this.http.get<History>(url);
+  }
+
+  getAllMatters(): ReplaySubject<Matter[]> {
+    return this.matters$;
   }
 
   historyToMatters(history: History): Matter[] {

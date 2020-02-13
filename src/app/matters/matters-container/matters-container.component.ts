@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, ReplaySubject } from 'rxjs';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 import { MatterService } from 'src/app/shared/services/matter.service';
 
@@ -9,9 +9,11 @@ import { MatterService } from 'src/app/shared/services/matter.service';
   styleUrls: ['./matters-container.component.scss']
 })
 export class MattersContainerComponent implements OnInit {
-  matters$: Observable<Matter[]> = this.matterService.matters$;
+  matters$: ReplaySubject<Matter[]>;
 
   constructor(private matterService: MatterService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.matters$ = this.matterService.getAllMatters();
+  }
 }
