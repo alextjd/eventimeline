@@ -42,8 +42,6 @@ export class MatterService {
     const historyData: HistoryData = history.data;
     for (const matterType of Object.keys(historyData)) {
       for (const matter of historyData[matterType]) {
-        console.log(matter);
-
         parsedMatters.push({
           year: matter.year,
           date: history.date,
@@ -51,11 +49,9 @@ export class MatterService {
           text: matter.text,
           html: matter.html,
           noYearHtml: matter.no_year_html
-        });
+        } as Matter);
       }
     }
-    console.log(parsedMatters);
-
     return parsedMatters;
   }
 }
