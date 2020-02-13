@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 import {
-  Matter,
   History,
   HistoryData,
+  Matter,
   MatterType
 } from '../interfaces/matter.interface';
+import { mockData } from '../mock/data.mock';
 
 const url = 'http://history.muffinlabs.com/date';
 
@@ -19,7 +20,8 @@ export class MatterService {
   matters$: Subject<Matter[]> = new Subject<Matter[]>();
 
   constructor(private http: HttpClient) {
-    this.history$ = this.getAllHistory();
+    // this.history$ = this.getAllHistory();
+    this.history$ = of(mockData);
 
     this.history$.subscribe((history: History) => {
       const matters: Matter[] = this.historyToMatters(history);
@@ -40,9 +42,11 @@ export class MatterService {
     const historyData: HistoryData = history.data;
     for (const matterType of Object.keys(historyData)) {
       for (const matter of historyData[matterType]) {
+        console.log(matter);
+
         parsedMatters.push({
           year: matter.year,
-          date: matter.date,
+          date: history.date,
           type: MatterType[matterType],
           text: matter.text,
           html: matter.html,
@@ -50,6 +54,8 @@ export class MatterService {
         });
       }
     }
+    console.log(parsedMatters);
+
     return parsedMatters;
   }
 }
