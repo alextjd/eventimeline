@@ -1,4 +1,7 @@
+@import 'variables.scss';
+
 .sidenav {
   height: 100%;
   padding: 2rem;
+  background: linear-gradient(to right, #5b86e5, $accent-teal);
 }
