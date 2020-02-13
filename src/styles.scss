@@ -1,6 +1,7 @@
 // Import Bulma's initial variables
 @import 'utilities/initial-variables';
 @import 'utilities/functions';
+@import 'variables.scss';
 
 html,
 body {
@@ -12,12 +13,6 @@ body {
 }
 
 // Create custom colors
-$accent-red: #fe4a49;
-$accent-teal: #2ab7ca;
-$accent-yellow: #fed766;
-$accent-grey: #e6e6ea;
-$accent-lightgrey: #f4f4f8;
-
 $accent-red-invert: findColorInvert($accent-red);
 $accent-teal-invert: findColorInvert($accent-teal);
 $accent-yellow-invert: findColorInvert($accent-yellow);
