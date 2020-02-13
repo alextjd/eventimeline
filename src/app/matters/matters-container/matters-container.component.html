@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Matters</h2>
-  <ng-container *ngFor="let matter of matters$ | async">
+  <div *ngFor="let matter of matters$ | async">
     <app-matter-item [matter]="matter"></app-matter-item>
-  </ng-container>
+  </div>
 </div>
