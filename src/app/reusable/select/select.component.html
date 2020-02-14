@@ -1,15 +1,17 @@
 <div class="field has-addons is-expanded">
   <div class="control ">
-    <div class="select ">
+    <div class="select is-accent-yellow">
       <select name="matter-type">
-        <option value="">Type</option>
-        <option value="Deaths">Death</option>
-        <option value="Births">Birth</option>
-        <option value="Events">Event</option>
+        <option value="">{{ title }}</option>
+        <option *ngFor="let option of options" [value]="option">
+          {{ option }}
+        </option>
       </select>
     </div>
   </div>
   <div class="control">
-    <button type="submit" class="button is-accent-red">Choose</button>
+    <button type="submit" class="button is-accent-yellow has-text-white">
+      Choose
+    </button>
   </div>
 </div>
