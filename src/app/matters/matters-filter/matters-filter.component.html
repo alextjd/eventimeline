@@ -1,17 +1,27 @@
 <div class="box">
   <div class="columns">
-    <form [formGroup]="filterForm">
+    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
       <div class="column">
-        <app-select
-          [options]="selectConfig.options"
-          [title]="selectConfig.title"
-        ></app-select>
+        <div class="field ">
+          <div class="select is-accent-yellow">
+            <select name="matter-type" formControlName="type">
+              <option value="">Type</option>
+              <option
+                *ngFor="let option of selectConfig.options"
+                [value]="option"
+              >
+                {{ option }}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="column">
         <input
           class="input is-accent-yellow"
           placeholder="Start date"
           type="date"
+          formControlName="startDate"
         />
       </div>
       <div class="column">
@@ -19,9 +29,10 @@
           class="input is-accent-yellow"
           placeholder="End date"
           type="date"
+          formControlName="endDate"
         />
       </div>
-      <button class="button is-accent-red">Reset filters</button>
+      <button class="button is-accent-red" type="submit">Reset filters</button>
     </form>
   </div>
 </div>
