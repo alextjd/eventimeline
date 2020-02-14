@@ -1,6 +1,5 @@
-<div class="container">
-  <h2>Matters</h2>
-  <div *ngFor="let matter of matters$ | async">
+<div class="container has-background-accent-lightgrey">
+  <div *ngFor="let matter of matters$ | async" class="matters">
     <app-matter-item [matter]="matter"></app-matter-item>
   </div>
 </div>
