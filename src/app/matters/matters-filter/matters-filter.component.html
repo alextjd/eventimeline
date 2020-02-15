@@ -32,7 +32,13 @@
           formControlName="endDate"
         />
       </div>
-      <button class="button is-accent-red" type="submit">Reset filters</button>
+      <button
+        class="button is-accent-red"
+        type="submit"
+        [disabled]="!filterForm.valid"
+      >
+        Reset filters
+      </button>
     </form>
   </div>
 </div>
