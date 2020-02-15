@@ -23,6 +23,10 @@
           type="date"
           formControlName="startDate"
         />
+        <app-error-help
+          *ngIf="filterForm.invalid && filterForm.errors.startDate"
+          [message]="filterForm.errors.startDate"
+        ></app-error-help>
       </div>
       <div class="column">
         <input
@@ -31,7 +35,12 @@
           type="date"
           formControlName="endDate"
         />
+        <app-error-help
+          *ngIf="filterForm.invalid && filterForm.errors.endDate"
+          [message]="filterForm.errors.endDate"
+        ></app-error-help>
       </div>
+
       <button
         class="button is-accent-red"
         type="submit"
