@@ -16,4 +16,8 @@ export class MattersContainerComponent implements OnInit {
   ngOnInit(): void {
     this.matters$ = this.matterService.getAllMatters();
   }
+
+  updateFilters(data: { [x: string]: string }) {
+    console.log(data);
+  }
 }

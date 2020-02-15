@@ -1,5 +1,5 @@
 <div class="container has-background-accent-lightgrey matters-container">
-  <app-matters-filter></app-matters-filter>
+  <app-matters-filter (filter)="updateFilters($event)"></app-matters-filter>
   <div *ngFor="let matter of matters$ | async" class="matters">
     <app-matter-item [matter]="matter"></app-matter-item>
   </div>
