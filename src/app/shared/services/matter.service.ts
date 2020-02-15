@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject, ReplaySubject } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import {
   History,
@@ -16,24 +17,39 @@ const url = 'http://history.muffinlabs.com/date';
   providedIn: 'root'
 })
 export class MatterService {
-  history$: Observable<History>;
-  matters$: ReplaySubject<Matter[]> = new ReplaySubject<Matter[]>();
+  matters$: Observable<Matter[]>;
+  mattersRS: ReplaySubject<Matter[]> = new ReplaySubject<Matter[]>();
 
   constructor(private http: HttpClient) {
-    // this.history$ = this.getAllHistory();
-    this.history$ = of(mockData);
-    this.history$.subscribe((history: History) => {
-      const matters: Matter[] = this.historyToMatters(history);
-      this.matters$.next(matters);
+    this.matters$ = this.getAllHistory();
+    this.matters$.subscribe((matters: Matter[]) => {
+      this.mattersRS.next(matters);
     });
   }
 
-  getAllHistory(): Observable<History> {
-    return this.http.get<History>(url);
+  getAllHistory(): Observable<Matter[]> {
+    // return this.http.get<History>(url)
+    return of(mockData).pipe(
+      map((history: History) => {
+        return this.historyToMatters(history);
+      })
+    );
   }
 
   getAllMatters(): ReplaySubject<Matter[]> {
-    return this.matters$;
+    return this.mattersRS;
+  }
+
+  filterMatters(data: { [x: string]: string }) {
+    this.matters$
+      .pipe(
+        map((matters: Matter[]) =>
+          matters.filter((matter: Matter) => matter.type === data.type)
+        )
+      )
+      .subscribe((matters: Matter[]) => {
+        this.mattersRS.next(matters);
+      });
   }
 
   historyToMatters(history: History): Matter[] {

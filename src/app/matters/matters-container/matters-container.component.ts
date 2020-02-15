@@ -19,5 +19,6 @@ export class MattersContainerComponent implements OnInit {
 
   updateFilters(data: { [x: string]: string }) {
     console.log(data);
+    this.matterService.filterMatters(data);
   }
 }
