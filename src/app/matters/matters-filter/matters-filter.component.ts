@@ -4,6 +4,7 @@ import { MatterType } from 'src/app/shared/interfaces/matter.interface';
 import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Validators } from '@angular/forms';
 import { DateValidator } from 'src/app/core/validators/date.validator';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-matters-filter',
@@ -20,8 +21,8 @@ export class MattersFilterComponent implements OnInit {
   filterForm = new FormGroup(
     {
       type: new FormControl(''),
-      startDate: new FormControl(''),
-      endDate: new FormControl('')
+      startDate: new FormControl(format(new Date(), 'yyyy-MM-dd')),
+      endDate: new FormControl(format(new Date(), 'yyyy-MM-dd'))
     },
     DateValidator()
   );
