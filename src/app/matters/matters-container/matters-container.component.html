@@ -1,6 +1,14 @@
-<div class="container has-background-accent-lightgrey matters-container">
-  <app-matters-filter (filter)="updateFilters($event)"></app-matters-filter>
-  <div *ngFor="let matter of matters$ | async" class="matters">
-    <app-matter-item [matter]="matter"></app-matter-item>
+<div class="has-background-accent-lightgrey matters-container">
+  <div class="columns">
+    <div class="column">
+      <app-matters-filter (filter)="updateFilters($event)"></app-matters-filter>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <div *ngFor="let matter of matters$ | async" class="matter">
+        <app-matter-item [matter]="matter"></app-matter-item>
+      </div>
+    </div>
   </div>
 </div>
