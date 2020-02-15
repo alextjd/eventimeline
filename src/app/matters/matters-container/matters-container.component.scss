@@ -6,4 +6,6 @@
 
 .matters-container {
   padding: 1rem;
+  overflow-y: auto;
+  max-height: 100%;
 }
