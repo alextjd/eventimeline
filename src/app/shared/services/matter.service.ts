@@ -10,6 +10,7 @@ import {
   MatterType
 } from '../interfaces/matter.interface';
 import { mockData } from '../mock/data.mock';
+import { MatterFilter } from '../interfaces/filter.interface';
 
 const url = 'http://history.muffinlabs.com/date';
 
@@ -40,7 +41,7 @@ export class MatterService {
     return this.mattersRS;
   }
 
-  filterMatters(data: { [x: string]: string }) {
+  filterMatters(data: MatterFilter) {
     this.matters$
       .pipe(
         map((matters: Matter[]) =>

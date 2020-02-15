@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, ReplaySubject } from 'rxjs';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 import { MatterService } from 'src/app/shared/services/matter.service';
+import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 
 @Component({
   selector: 'app-matters-container',
@@ -17,7 +18,7 @@ export class MattersContainerComponent implements OnInit {
     this.matters$ = this.matterService.getAllMatters();
   }
 
-  updateFilters(data: { [x: string]: string }) {
+  updateFilters(data: MatterFilter) {
     console.log(data);
     this.matterService.filterMatters(data);
   }

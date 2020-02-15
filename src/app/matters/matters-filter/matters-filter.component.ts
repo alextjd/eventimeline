@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatterType } from 'src/app/shared/interfaces/matter.interface';
+import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 
 @Component({
   selector: 'app-matters-filter',
@@ -8,7 +9,7 @@ import { MatterType } from 'src/app/shared/interfaces/matter.interface';
   styleUrls: ['./matters-filter.component.scss']
 })
 export class MattersFilterComponent implements OnInit {
-  @Output() filter: EventEmitter<{ [x: string]: string }> = new EventEmitter();
+  @Output() filter: EventEmitter<MatterFilter> = new EventEmitter();
 
   selectConfig = {
     options: [MatterType.Deaths, MatterType.Births, MatterType.Events]
