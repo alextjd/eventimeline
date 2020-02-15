@@ -45,7 +45,9 @@ export class MatterService {
     this.matters$
       .pipe(
         map((matters: Matter[]) =>
-          matters.filter((matter: Matter) => matter.type === data.type)
+          matters.filter(
+            (matter: Matter) => data.type === '' || matter.type === data.type
+          )
         )
       )
       .subscribe((matters: Matter[]) => {
