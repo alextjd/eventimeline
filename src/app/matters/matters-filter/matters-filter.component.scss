@@ -1,0 +1,12 @@
+.filter-btn {
+  margin-right: 0;
+  margin-left: auto;
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-btn {
+    display: flex;
+    width: 100%;
+  }
+}

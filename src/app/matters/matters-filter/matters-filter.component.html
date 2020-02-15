@@ -38,14 +38,15 @@
           [message]="filterForm.errors.endDate"
         ></app-error-help>
       </div>
+      <div class="column">
+        <button
+          class="button is-accent-red filter-btn"
+          type="submit"
+          [disabled]="!filterForm.valid"
+        >
+          Filter
+        </button>
+      </div>
     </div>
-
-    <button
-      class="button is-accent-red"
-      type="submit"
-      [disabled]="!filterForm.valid"
-    >
-      Filter
-    </button>
   </form>
 </div>
