@@ -1,13 +1,16 @@
-<nav class="pagination is-right" role="navigation" aria-label="pagination">
-  <a class="pagination-previous">Previous</a>
-  <a class="pagination-next">Next page</a>
+<nav class="pagination is-right">
+  <a class="pagination-previous" (click)="changePage(-1)">Previous</a>
+  <a class="pagination-next" (click)="changePage(1)">Next page</a>
   <ul class="pagination-list">
     <li
       *ngFor="let item of [].constructor(pageSize); let i = index"
-      [ngClass]="{ 'is-current': i === currentPage }"
       (click)="onPageChange(i)"
     >
-      {{ i + 1 }}
+      <a
+        class="pagination-link"
+        [ngClass]="{ 'is-current': i === currentPage }"
+        >{{ i + 1 }}</a
+      >
     </li>
   </ul>
 </nav>

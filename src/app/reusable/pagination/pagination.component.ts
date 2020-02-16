@@ -19,4 +19,15 @@ export class PaginationComponent implements OnInit {
   onPageChange(page: number) {
     this.pageChange.emit(page);
   }
+
+  changePage(amount: number) {
+    this.currentPage += amount;
+    if (this.currentPage < 0) {
+      this.currentPage = 0;
+    }
+    if (this.currentPage > this.pageSize - 1) {
+      this.currentPage = this.pageSize - 1;
+    }
+    this.onPageChange(this.currentPage);
+  }
 }

@@ -11,20 +11,21 @@ import { MatterService } from 'src/app/shared/services/matter.service';
 })
 export class MattersContainerComponent implements OnInit {
   mattersRS: ReplaySubject<Matter[]>;
-  currentPage = 0;
+  currentPage: number;
 
   constructor(private matterService: MatterService) {}
 
   ngOnInit(): void {
     this.mattersRS = this.matterService.getAllMatters();
-    this.changePage(this.currentPage);
+    this.changePage(0);
   }
 
   updateFilters(data: MatterFilter) {
     this.matterService.filterMatters(data);
   }
 
-  changePage(index: number) {
-    this.matterService.changePage(index);
+  changePage(page: number) {
+    this.currentPage = page;
+    this.matterService.changePage(page);
   }
 }
