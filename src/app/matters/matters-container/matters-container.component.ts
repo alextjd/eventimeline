@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 import { MatterService } from 'src/app/shared/services/matter.service';
@@ -11,7 +11,9 @@ import { MatterService } from 'src/app/shared/services/matter.service';
 })
 export class MattersContainerComponent implements OnInit {
   mattersRS: ReplaySubject<Matter[]>;
+  subscriptions: Subscription;
   currentPage: number;
+  filterData: MatterFilter;
 
   constructor(private matterService: MatterService) {}
 
@@ -21,11 +23,16 @@ export class MattersContainerComponent implements OnInit {
   }
 
   updateFilters(data: MatterFilter) {
-    this.matterService.filterMatters(data);
+    this.filterData = data;
+    this.matterService.filterMatters(data).subscribe((matters: Matter[]) => {
+      this.mattersRS.next(matters);
+    });
   }
 
   changePage(page: number) {
     this.currentPage = page;
-    this.matterService.changePage(page);
+    this.matterService
+      .changePage(page)
+      .subscribe((matters: Matter[]) => this.mattersRS.next(matters));
   }
 }

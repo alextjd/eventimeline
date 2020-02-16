@@ -42,29 +42,23 @@ export class MatterService {
     return this.mattersRS;
   }
 
-  filterMatters(data: MatterFilter) {
-    this.matters$
-      .pipe(
-        map((matters: Matter[]) =>
-          matters.filter(
-            (matter: Matter) => data.type === '' || matter.type === data.type
-          )
+  filterMatters(data: MatterFilter): Observable<Matter[]> {
+    return this.matters$.pipe(
+      map((matters: Matter[]) =>
+        matters.filter(
+          (matter: Matter) => data.type === '' || matter.type === data.type
         )
       )
-      .subscribe((matters: Matter[]) => {
-        this.mattersRS.next(matters);
-      });
+    );
   }
 
-  changePage(currentPage: number) {
+  changePage(currentPage: number): Observable<Matter[]> {
     const pagePosition: number = currentPage * itemsPerPage;
-    this.matters$
-      .pipe(
-        map((matters: Matter[]) => {
-          return matters.slice(pagePosition, pagePosition + itemsPerPage);
-        })
-      )
-      .subscribe((matters: Matter[]) => this.mattersRS.next(matters));
+    return this.matters$.pipe(
+      map((matters: Matter[]) => {
+        return matters.slice(pagePosition, pagePosition + itemsPerPage);
+      })
+    );
   }
 
   historyToMatters(history: History): Matter[] {
