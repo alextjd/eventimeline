@@ -19,8 +19,8 @@
       <a
         class="pagination-link "
         [ngClass]="{
-          'is-current': i === currentPage,
-          'has-background-white': i !== currentPage
+          'is-current': isCurrentPage(i),
+          'has-background-white': !isCurrentPage(i)
         }"
         >{{ i + 1 }}</a
       >

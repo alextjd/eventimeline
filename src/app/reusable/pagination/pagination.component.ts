@@ -30,4 +30,8 @@ export class PaginationComponent implements OnInit {
     }
     this.onPageChange(this.currentPage);
   }
+
+  isCurrentPage(page: number): boolean {
+    return page === this.currentPage;
+  }
 }
