@@ -1,14 +1,27 @@
 <nav class="pagination is-right">
-  <a class="pagination-previous" (click)="changePage(-1)">Previous</a>
-  <a class="pagination-next" (click)="changePage(1)">Next page</a>
+  <button
+    class="button pagination-previous has-background-white"
+    (click)="changePage(-1)"
+  >
+    Previous
+  </button>
+  <button
+    class="button pagination-next has-background-white"
+    (click)="changePage(1)"
+  >
+    Next page
+  </button>
   <ul class="pagination-list">
     <li
       *ngFor="let item of [].constructor(pageSize); let i = index"
       (click)="onPageChange(i)"
     >
       <a
-        class="pagination-link"
-        [ngClass]="{ 'is-current': i === currentPage }"
+        class="pagination-link "
+        [ngClass]="{
+          'is-current': i === currentPage,
+          'has-background-white': i !== currentPage
+        }"
         >{{ i + 1 }}</a
       >
     </li>

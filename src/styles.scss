@@ -12,6 +12,10 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+// Override bulma default colors
+$pagination-current-background-color: $accent-teal;
+$pagination-current-border-color: $accent-teal;
+
 // Create custom colors
 $accent-red-invert: findColorInvert($accent-red);
 $accent-teal-invert: findColorInvert($accent-teal);
