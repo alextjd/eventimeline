@@ -11,6 +11,7 @@ import {
 } from '../interfaces/matter.interface';
 import { mockData } from '../mock/data.mock';
 import { MatterFilter } from '../interfaces/filter.interface';
+import { itemsPerPage } from '../constants/pagination.constants';
 
 const url = 'http://history.muffinlabs.com/date';
 
@@ -53,6 +54,17 @@ export class MatterService {
       .subscribe((matters: Matter[]) => {
         this.mattersRS.next(matters);
       });
+  }
+
+  changePage(currentPage: number) {
+    const pagePosition: number = currentPage * itemsPerPage;
+    this.matters$
+      .pipe(
+        map((matters: Matter[]) => {
+          return matters.slice(pagePosition, pagePosition + itemsPerPage);
+        })
+      )
+      .subscribe((matters: Matter[]) => this.mattersRS.next(matters));
   }
 
   historyToMatters(history: History): Matter[] {

@@ -17,11 +17,14 @@ export class MattersContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.mattersRS = this.matterService.getAllMatters();
+    this.changePage(0);
   }
 
   updateFilters(data: MatterFilter) {
     this.matterService.filterMatters(data);
   }
 
-  getPage(index: number) {}
+  changePage(index: number) {
+    this.matterService.changePage(index);
+  }
 }
