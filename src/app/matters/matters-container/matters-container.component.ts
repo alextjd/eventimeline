@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
+import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 import { MatterService } from 'src/app/shared/services/matter.service';
-import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 
 @Component({
   selector: 'app-matters-container',
@@ -10,16 +10,18 @@ import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
   styleUrls: ['./matters-container.component.scss']
 })
 export class MattersContainerComponent implements OnInit {
-  matters$: ReplaySubject<Matter[]>;
+  mattersRS: ReplaySubject<Matter[]>;
+  currentPage = 0;
 
   constructor(private matterService: MatterService) {}
 
   ngOnInit(): void {
-    this.matters$ = this.matterService.getAllMatters();
+    this.mattersRS = this.matterService.getAllMatters();
   }
 
   updateFilters(data: MatterFilter) {
-    console.log(data);
     this.matterService.filterMatters(data);
   }
+
+  getPage(index: number) {}
 }
