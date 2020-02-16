@@ -3,6 +3,7 @@ import { ReplaySubject, Subscription } from 'rxjs';
 import { MatterFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 import { MatterService } from 'src/app/shared/services/matter.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-matters-container',
@@ -13,7 +14,11 @@ export class MattersContainerComponent implements OnInit {
   mattersRS: ReplaySubject<Matter[]>;
   subscriptions: Subscription;
   currentPage: number;
-  filterData: MatterFilter;
+  filterData: MatterFilter = {
+    type: '',
+    startDate: format(new Date(), 'yyyy-MM-dd'),
+    endDate: format(new Date(), 'yyyy-MM-dd')
+  };
 
   constructor(private matterService: MatterService) {}
 
@@ -24,15 +29,19 @@ export class MattersContainerComponent implements OnInit {
 
   updateFilters(data: MatterFilter) {
     this.filterData = data;
-    this.matterService.filterMatters(data).subscribe((matters: Matter[]) => {
-      this.mattersRS.next(matters);
-    });
+    this.updateMatters();
   }
 
   changePage(page: number) {
     this.currentPage = page;
+    this.updateMatters();
+  }
+
+  updateMatters() {
     this.matterService
-      .changePage(page)
-      .subscribe((matters: Matter[]) => this.mattersRS.next(matters));
+      .updateMatters(this.filterData, this.currentPage)
+      .subscribe((matters: Matter[]) => {
+        this.mattersRS.next(matters);
+      });
   }
 }

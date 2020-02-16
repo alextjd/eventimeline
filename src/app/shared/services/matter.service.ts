@@ -42,22 +42,24 @@ export class MatterService {
     return this.mattersRS;
   }
 
-  filterMatters(data: MatterFilter): Observable<Matter[]> {
-    return this.matters$.pipe(
-      map((matters: Matter[]) =>
-        matters.filter(
-          (matter: Matter) => data.type === '' || matter.type === data.type
-        )
-      )
+  filterMatters(matters: Matter[], filter: MatterFilter): Matter[] {
+    return matters.filter(
+      (matter: Matter) => filter.type === '' || matter.type === filter.type
     );
   }
 
-  changePage(currentPage: number): Observable<Matter[]> {
+  changePage(matters: Matter[], currentPage: number): Matter[] {
     const pagePosition: number = currentPage * itemsPerPage;
+    return matters.slice(pagePosition, pagePosition + itemsPerPage);
+  }
+
+  updateMatters(
+    filterData: MatterFilter,
+    currentPage: number
+  ): Observable<Matter[]> {
     return this.matters$.pipe(
-      map((matters: Matter[]) => {
-        return matters.slice(pagePosition, pagePosition + itemsPerPage);
-      })
+      map((matters: Matter[]) => this.filterMatters(matters, filterData)),
+      map((matters: Matter[]) => this.changePage(matters, currentPage))
     );
   }
 
