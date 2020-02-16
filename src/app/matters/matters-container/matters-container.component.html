@@ -5,10 +5,15 @@
     </div>
   </div>
   <div class="columns">
-    <div class="column">
+    <div class="column matters-list">
       <div *ngFor="let matter of matters$ | async" class="matter">
         <app-matter-item [matter]="matter"></app-matter-item>
       </div>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <app-pagination></app-pagination>
     </div>
   </div>
 </div>
