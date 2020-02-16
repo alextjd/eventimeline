@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { itemsPerPage } from '../../shared/constants/pagination.constants';
 
 @Component({
   selector: 'app-pagination',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
+  @Input() currentPage: number;
+  @Output() pageChange: EventEmitter<number> = new EventEmitter();
+  pageSize = itemsPerPage;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onPageChange(page: number) {
+    this.pageChange.emit(page);
   }
-
 }

@@ -17,7 +17,7 @@ export class MattersContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.mattersRS = this.matterService.getAllMatters();
-    this.changePage(0);
+    this.changePage(this.currentPage);
   }
 
   updateFilters(data: MatterFilter) {
