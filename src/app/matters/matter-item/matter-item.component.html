@@ -1,4 +1,4 @@
-<div class="box content">
+<div class="box content matter">
   <article class="post">
     <h4>{{ matter.text }}</h4>
     <div class="media">
@@ -11,10 +11,10 @@
           </p>
         </div>
       </div>
-      <div class="media-right">
-        <span class="has-text-grey-light"
-          ><i class="fa fa-comments"></i>{{ matter.type }}</span
-        >
+      <div class="media-right matter-type">
+        <span class="tag is-italic" [ngClass]="getTypeColor(matter.type)">{{
+          matter.type
+        }}</span>
       </div>
     </div>
   </article>

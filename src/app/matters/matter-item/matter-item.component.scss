@@ -1,0 +1,23 @@
+@import 'variables';
+
+.matter {
+  position: relative;
+  background-image: none;
+  cursor: pointer;
+  z-index: 1;
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to right, $accent-yellow, $accent-red);
+    z-index: -1;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}

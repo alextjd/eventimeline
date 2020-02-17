@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Matter } from 'src/app/shared/interfaces/matter.interface';
+import { Matter, MatterType } from 'src/app/shared/interfaces/matter.interface';
 
 @Component({
   selector: 'app-matter-item',
@@ -12,4 +12,12 @@ export class MatterItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getTypeColor(type: MatterType): { [x: string]: boolean } {
+    return {
+      'is-accent-teal': type === MatterType.Births,
+      'is-black': type === MatterType.Deaths,
+      'is-accent-lightgrey': type === MatterType.Events
+    };
+  }
 }
