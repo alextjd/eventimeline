@@ -1,5 +1,11 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Matter, MatterType } from 'src/app/shared/interfaces/matter.interface';
+import {
+  faBirthdayCake,
+  faSkull,
+  faCalendarDay,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-matter-item',
@@ -15,9 +21,18 @@ export class MatterItemComponent implements OnInit {
 
   getTypeColor(type: MatterType): { [x: string]: boolean } {
     return {
-      'is-accent-teal': type === MatterType.Births,
+      'is-accent-yellow': type === MatterType.Births,
+      'has-text-white': type === MatterType.Births,
       'is-black': type === MatterType.Deaths,
-      'is-accent-lightgrey': type === MatterType.Events
+      'is-accent-teal': type === MatterType.Events
     };
+  }
+
+  getTypeIcon(type: any): IconDefinition {
+    return type === MatterType.Births
+      ? faBirthdayCake
+      : type === MatterType.Deaths
+      ? faSkull
+      : faCalendarDay;
   }
 }
