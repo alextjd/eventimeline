@@ -29,26 +29,27 @@ export class MattersContainerComponent implements OnInit {
 
   updateFilters(data: MatterFilter) {
     this.filterData = data;
-    this.updateMatters();
+    this.filterMatters();
   }
 
   changePage(page: number) {
     this.currentPage = page;
-    this.updateMatters();
+    this.filterMatters();
   }
 
-  updateMatters() {
+  filterMatters() {
+    this.matterService
+      .updateMatters(this.filterData, this.currentPage)
+      .subscribe((matters: Matter[]) => {
+        this.mattersRS.next(matters);
+      });
+  }
+
+  getMatters() {
     this.matterService
       .getMatters(this.filterData.startDate, this.filterData.endDate)
-      .subscribe(data => {
-        console.log(data);
+      .subscribe((matters: Matter[]) => {
+        this.mattersRS.next(matters);
       });
-    // this.matterService
-    //   .updateMatters(this.filterData, this.currentPage)
-    //   .subscribe((matters: Matter[]) => {
-    //     this.mattersRS.next(matters);
-    //   });
   }
-
-  getMatters() {}
 }
