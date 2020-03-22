@@ -9,11 +9,11 @@
     class="button pagination-next has-background-white"
     (click)="changePage(1)"
   >
-    Next page
+    Next
   </button>
   <ul class="pagination-list">
     <li
-      *ngFor="let item of [].constructor(pageSize); let i = index"
+      *ngFor="let item of [].constructor(pageSize * 2); let i = index"
       (click)="onPageChange(i)"
     >
       <a
