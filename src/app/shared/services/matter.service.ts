@@ -13,7 +13,7 @@ import { mockData } from '../mock/data.mock';
 import { MatterFilter } from '../interfaces/filter.interface';
 import { itemsPerPage } from '../constants/pagination.constants';
 
-const url = 'http://history.muffinlabs.com/date';
+const url = 'http://localhost:3000/api/days/';
 
 @Injectable({
   providedIn: 'root'
