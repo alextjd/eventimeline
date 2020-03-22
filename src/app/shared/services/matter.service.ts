@@ -56,6 +56,12 @@ export class MatterService {
     );
   }
 
+  buildMattersQuery(start: string, end: string): string {
+    const parsedStart = `${start.substr(start.indexOf('-') + 1)}`;
+    const parsedEnd = `${end.substr(end.indexOf('-') + 1)}`;
+    return `?start=${parsedStart}&end=${parsedEnd}`;
+  }
+
   changePage(matters: Matter[], currentPage: number): Matter[] {
     const pagePosition: number = currentPage * itemsPerPage;
     return matters.slice(pagePosition, pagePosition + itemsPerPage);
