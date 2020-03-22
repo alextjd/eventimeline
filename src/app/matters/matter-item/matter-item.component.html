@@ -11,13 +11,8 @@
           </p>
         </div>
       </div>
-      <div class="media-right matter-type">
-        <button class="button" [ngClass]="getTypeColor(matter.type)">
-          <span class="icon">
-            <fa-icon [icon]="getTypeIcon(matter.type)"></fa-icon>
-          </span>
-          <span class=" is-italic">{{ matter.type }}</span>
-        </button>
+      <div class="media-right">
+        <app-matter-type [matter]="matter"></app-matter-type>
       </div>
     </div>
   </article>

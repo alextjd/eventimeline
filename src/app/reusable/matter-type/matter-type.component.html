@@ -1,0 +1,8 @@
+<div class="matter-type">
+  <button class="button" [ngClass]="getTypeColor(matter.type)">
+    <span class="icon">
+      <fa-icon [icon]="getTypeIcon(matter.type)"></fa-icon>
+    </span>
+    <span class=" is-italic">{{ matter.type }}</span>
+  </button>
+</div>
