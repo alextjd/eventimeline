@@ -23,13 +23,14 @@ export class MattersContainerComponent implements OnInit {
   constructor(private matterService: MatterService) {}
 
   ngOnInit(): void {
-    this.mattersRS = this.matterService.getAllMatters();
+    this.mattersRS = this.matterService.getMattersRS();
     this.changePage(0);
   }
 
   updateFilters(data: MatterFilter) {
     this.filterData = data;
     this.getMatters();
+    this.filterMatters();
   }
 
   changePage(page: number) {
@@ -46,11 +47,9 @@ export class MattersContainerComponent implements OnInit {
   }
 
   getMatters() {
-    this.matterService
-      .getMatters(this.filterData.startDate, this.filterData.endDate)
-      .subscribe((matters: Matter[]) => {
-        this.mattersRS.next(matters);
-        this.filterMatters();
-      });
+    this.matterService.retrieveMatters(
+      this.filterData.startDate,
+      this.filterData.endDate
+    );
   }
 }
