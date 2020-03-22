@@ -42,11 +42,8 @@ export class MatterService {
     return this.mattersRS;
   }
 
-  getMatters(filterData: MatterFilter): Observable<Matter[]> {
-    const query = this.buildMattersQuery(
-      filterData.startDate,
-      filterData.endDate
-    );
+  getMatters(start: string, end: string): Observable<Matter[]> {
+    const query = this.buildMattersQuery(start, end);
     return this.http.get<Matter[]>(`${url}${query}`);
   }
 

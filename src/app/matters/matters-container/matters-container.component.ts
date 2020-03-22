@@ -39,9 +39,16 @@ export class MattersContainerComponent implements OnInit {
 
   updateMatters() {
     this.matterService
-      .updateMatters(this.filterData, this.currentPage)
-      .subscribe((matters: Matter[]) => {
-        this.mattersRS.next(matters);
+      .getMatters(this.filterData.startDate, this.filterData.endDate)
+      .subscribe(data => {
+        console.log(data);
       });
+    // this.matterService
+    //   .updateMatters(this.filterData, this.currentPage)
+    //   .subscribe((matters: Matter[]) => {
+    //     this.mattersRS.next(matters);
+    //   });
   }
+
+  getMatters() {}
 }
