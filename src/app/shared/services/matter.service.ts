@@ -12,6 +12,7 @@ import {
 import { mockData } from '../mock/data.mock';
 import { MatterFilter } from '../interfaces/filter.interface';
 import { itemsPerPage } from '../constants/pagination.constants';
+import { format } from 'date-fns';
 
 const url = 'http://localhost:3000/api/days/';
 
@@ -23,19 +24,11 @@ export class MatterService {
   mattersRS: ReplaySubject<Matter[]> = new ReplaySubject<Matter[]>();
 
   constructor(private http: HttpClient) {
-    this.matters$ = this.getAllHistory();
+    const today: string = format(new Date(), 'yyyy-MM-dd');
+    this.matters$ = this.getMatters(today, today);
     this.matters$.subscribe((matters: Matter[]) => {
       this.mattersRS.next(matters);
     });
-  }
-
-  getAllHistory(): Observable<Matter[]> {
-    // return this.http.get<History>(url)
-    return of(mockData).pipe(
-      map((history: History) => {
-        return this.historyToMatters(history);
-      })
-    );
   }
 
   getAllMatters(): ReplaySubject<Matter[]> {
