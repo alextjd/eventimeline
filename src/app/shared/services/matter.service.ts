@@ -82,6 +82,7 @@ export class MatterService {
             type: MatterType[matterType],
             text: matter.text,
             html: matter.html,
+            url: historyItem.url,
             noYearHtml: matter.no_year_html
           } as Matter);
         }

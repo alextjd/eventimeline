@@ -16,6 +16,7 @@ export interface Matter {
   type: MatterType;
   text: string;
   html: string;
+  url: string;
   noYearHtml: string;
 }
 
