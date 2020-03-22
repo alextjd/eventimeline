@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Matter } from 'src/app/shared/interfaces/matter.interface';
 
 @Component({
@@ -9,8 +9,13 @@ import { Matter } from 'src/app/shared/interfaces/matter.interface';
 export class MattersDetailComponent implements OnInit {
   @Input() show: boolean;
   @Input() matter: Matter;
+  @Output() closeDetail: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  close() {
+    this.closeDetail.emit();
+  }
 }

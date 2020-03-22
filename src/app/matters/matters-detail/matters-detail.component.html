@@ -1,5 +1,5 @@
 <div class="modal" [ngClass]="{ 'is-active': show }" *ngIf="matter">
-  <div class="modal-background"></div>
+  <div class="modal-background" (click)="close()"></div>
   <div class="modal-content">
     <div class="card">
       <div class="card-content">
@@ -12,8 +12,17 @@
         <p class="card-footer-item">
           <span> View on <a href="{{ matter.url }}">Wikipedia</a> </span>
         </p>
+        <p class="card-footer-item">
+          <span>
+            Type: <b>{{ matter.type }} </b></span
+          >
+        </p>
       </footer>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="close()"
+  ></button>
 </div>
