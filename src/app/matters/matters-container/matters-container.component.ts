@@ -56,9 +56,11 @@ export class MattersContainerComponent implements OnInit {
   }
 
   toggleDetail(matter: Matter) {
-    console.log('ye');
-
     this.showDetail = !this.showDetail;
     this.selectedMatter = matter;
+  }
+
+  closeDetail() {
+    this.showDetail = false;
   }
 }
