@@ -29,7 +29,7 @@ export class MattersContainerComponent implements OnInit {
 
   updateFilters(data: MatterFilter) {
     this.filterData = data;
-    this.filterMatters();
+    this.getMatters();
   }
 
   changePage(page: number) {
@@ -50,6 +50,7 @@ export class MattersContainerComponent implements OnInit {
       .getMatters(this.filterData.startDate, this.filterData.endDate)
       .subscribe((matters: Matter[]) => {
         this.mattersRS.next(matters);
+        this.filterMatters();
       });
   }
 }
