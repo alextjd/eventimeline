@@ -17,7 +17,11 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    request.headers.set('cbcprls', key);
+    request = request.clone({
+      setHeaders: {
+        cbcprls: key
+      }
+    });
     return next.handle(request);
   }
 }
