@@ -42,6 +42,14 @@ export class MatterService {
     return this.mattersRS;
   }
 
+  getMatters(filterData: MatterFilter): Observable<Matter[]> {
+    const query = this.buildMattersQuery(
+      filterData.startDate,
+      filterData.endDate
+    );
+    return this.http.get<Matter[]>(`${url}${query}`);
+  }
+
   filterMatters(matters: Matter[], filter: MatterFilter): Matter[] {
     return matters.filter(
       (matter: Matter) => filter.type === '' || matter.type === filter.type
