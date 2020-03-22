@@ -9,14 +9,15 @@
         <p class="subtitle">{{ matter.date }}, year {{ matter.year }}</p>
       </div>
       <footer class="card-footer">
-        <p class="card-footer-item">
+        <div class="card-footer-item">
           <span> View on <a href="{{ matter.url }}">Wikipedia</a> </span>
-        </p>
-        <p class="card-footer-item">
-          <span>
-            Type: <b>{{ matter.type }} </b></span
-          >
-        </p>
+        </div>
+        <div class="card-footer-item">
+          <app-matter-type
+            [matter]="matter"
+            class="matter-type"
+          ></app-matter-type>
+        </div>
       </footer>
     </div>
   </div>
