@@ -25,19 +25,19 @@ export class MatterService {
 
   constructor(private http: HttpClient) {
     const today: string = format(new Date(), 'yyyy-MM-dd');
-    this.matters$ = this.getMatters(today, today);
+    this.retrieveMatters(today, today);
     this.matters$.subscribe((matters: Matter[]) => {
       this.mattersRS.next(matters);
     });
   }
 
-  getAllMatters(): ReplaySubject<Matter[]> {
+  getMattersRS(): ReplaySubject<Matter[]> {
     return this.mattersRS;
   }
 
-  getMatters(start: string, end: string): Observable<Matter[]> {
+  retrieveMatters(start: string, end: string) {
     const query = this.buildMattersQuery(start, end);
-    return this.http.get<History[]>(`${url}${query}`).pipe(
+    this.matters$ = this.http.get<History[]>(`${url}${query}`).pipe(
       map((history: History[]) => {
         return this.parseMatters(history);
       })
