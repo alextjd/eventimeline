@@ -37,7 +37,11 @@ export class MatterService {
 
   getMatters(start: string, end: string): Observable<Matter[]> {
     const query = this.buildMattersQuery(start, end);
-    return this.http.get<Matter[]>(`${url}${query}`);
+    return this.http.get<History[]>(`${url}${query}`).pipe(
+      map((history: History[]) => {
+        return this.parseMatters(history);
+      })
+    );
   }
 
   filterMatters(matters: Matter[], filter: MatterFilter): Matter[] {
@@ -67,19 +71,20 @@ export class MatterService {
     );
   }
 
-  historyToMatters(history: History): Matter[] {
+  parseMatters(history: History[]): Matter[] {
     const parsedMatters: Matter[] = [];
-    const historyData: HistoryData = history.data;
-    for (const matterType of Object.keys(historyData)) {
-      for (const matter of historyData[matterType]) {
-        parsedMatters.push({
-          year: matter.year,
-          date: history.date,
-          type: MatterType[matterType],
-          text: matter.text,
-          html: matter.html,
-          noYearHtml: matter.no_year_html
-        } as Matter);
+    for (const historyItem of history) {
+      for (const matterType of Object.keys(historyItem.data)) {
+        for (const matter of historyItem.data[matterType]) {
+          parsedMatters.push({
+            year: matter.year,
+            date: historyItem.date,
+            type: MatterType[matterType],
+            text: matter.text,
+            html: matter.html,
+            noYearHtml: matter.no_year_html
+          } as Matter);
+        }
       }
     }
     return parsedMatters;
