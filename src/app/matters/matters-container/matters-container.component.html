@@ -6,7 +6,11 @@
   </div>
   <div class="columns">
     <div class="column matters-list">
-      <div *ngFor="let matter of mattersRS | async" class="matter">
+      <div
+        *ngFor="let matter of mattersRS | async"
+        class="matter"
+        (click)="toggleDetail(matter)"
+      >
         <app-matter-item [matter]="matter"></app-matter-item>
       </div>
     </div>
@@ -20,3 +24,7 @@
     </div>
   </div>
 </div>
+<app-matters-detail
+  [show]="showDetail"
+  [matter]="selectedMatter"
+></app-matters-detail>

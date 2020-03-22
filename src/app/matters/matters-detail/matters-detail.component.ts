@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Matter } from 'src/app/shared/interfaces/matter.interface';
 
 @Component({
   selector: 'app-matters-detail',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matters-detail.component.scss']
 })
 export class MattersDetailComponent implements OnInit {
+  @Input() show: boolean;
+  @Input() matter: Matter;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

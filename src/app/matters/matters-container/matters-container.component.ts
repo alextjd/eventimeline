@@ -14,6 +14,8 @@ export class MattersContainerComponent implements OnInit {
   mattersRS: ReplaySubject<Matter[]>;
   subscriptions: Subscription;
   currentPage: number;
+  showDetail = false;
+  selectedMatter: Matter;
   filterData: MatterFilter = {
     type: '',
     startDate: format(new Date(), 'yyyy-MM-dd'),
@@ -51,5 +53,12 @@ export class MattersContainerComponent implements OnInit {
       this.filterData.startDate,
       this.filterData.endDate
     );
+  }
+
+  toggleDetail(matter: Matter) {
+    console.log('ye');
+
+    this.showDetail = !this.showDetail;
+    this.selectedMatter = matter;
   }
 }
